@@ -5,7 +5,7 @@
     require_once '../php/modules/Chat.php';
 
     try{
-        $parser = new HangoutsContentReader('Hangouts.json', '../json-files/');
+        $parser = HangoutsContentReader::getInstance('Hangouts.json', '../json-files/');
         $chats = $parser->getChats();
     }
     catch(Exception $e){

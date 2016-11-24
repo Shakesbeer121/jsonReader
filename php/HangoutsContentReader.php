@@ -10,7 +10,27 @@ require_once 'modules/Message.php';
  */
 class HangoutsContentReader extends JsonParser
 {
+    //Holds the only instance of the class #singleton
+    private static $instance = null;
     private $chats = [];
+
+    /**
+     * Globally only one instance of jsonParser (singleton).
+     * @return mixed
+     */
+    public static function getInstance($fileName, $path){
+        if (self::$instance == null){
+            self::$instance = new self($fileName, $path);
+        }
+        return self::$instance;
+    }
+
+    /**
+     * clone
+     *
+     * External copy forbidden.
+     */
+    protected function __clone() {}
 
     /**
      * HangoutsContentReader constructor.
@@ -18,7 +38,7 @@ class HangoutsContentReader extends JsonParser
      * @param $fileName
      * @param $path
      */
-    public function __construct($fileName, $path)
+    protected function __construct($fileName, $path)
     {
         parent::__construct($fileName, $path);
     }

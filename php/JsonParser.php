@@ -17,12 +17,12 @@ class JsonParser
 
     /**
      * JsonParser constructor.
-     * initializes every data field. Required for every other method. Don't use the magic php constructor!
+     *
      * @param $fileName
      * @param $path
      * @throws Exception
      */
-    public function __construct($fileName, $path)
+    protected function __construct($fileName, $path)
     {
         $this->fileName = $fileName;
         $this->path = $path;
@@ -36,7 +36,10 @@ class JsonParser
         }
     }
 
-    //load the json Object from the directory and save it in the json data field
+    /**
+     * load the json Object from the directory and save it in the json data field
+     * @throws Exception
+     */
     private function loadJsonObject(){
         //set the full directory to the file. For ex. string "foo/json/bar.json"
         $fullDir = $this->path . $this->fileName;
@@ -64,5 +67,9 @@ class JsonParser
         else{
             throw new Exception('Sie haben kein Json File zugewiesen.');
         }
+    }
+
+    public static function calc(){
+        return 2+2;
     }
 }
